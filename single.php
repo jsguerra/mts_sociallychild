@@ -9,6 +9,10 @@
 if ($mts_options['mts_breadcrumb'] == '1') {
 	mts_the_breadcrumb();
 }
+
+// Time variables
+$u_time = get_the_time('U'); 
+$u_modified_time = get_the_modified_time('U'); 
 ?>
 <div id="page" class="<?php mts_single_page_class(); ?>">
 
@@ -50,7 +54,17 @@ if ($mts_options['mts_breadcrumb'] == '1') {
 					                                <span class="theauthor"><i class="fa fa-user"></i> <span><?php the_author_posts_link(); ?></span></span>
 					                            <?php } ?>
 					                            <?php if( ! empty( $mts_options["mts_single_headline_meta_info"]['date']) ) { ?>
-					                                <span class="thetime date updated"><i class="fa fa-calendar"></i> <span><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . __(' ago','sociallyviral'); ?></span></span>
+                                          <span class="thetime date updated"><i class="fa fa-calendar"></i> <span><?php the_time('F j, Y');
+                                                      // if ($u_modified_time >= $u_time + 86400) {
+                                                      //   echo 'updated: '; 
+                                                      //   the_modified_time('F jS, Y');
+                                                      //   echo ' &nbsp;&nbsp;<i class="fa fa-calendar"></i>  Published: ';
+                                                      //   the_time('F j, Y');
+                                                      // } else {
+                                                      //   echo 'Published: ';
+                                                      //   the_time('F j, Y');
+                                                      // }
+                                            ?></span></span>
 					                            <?php } ?>
 					                            <?php if( ! empty( $mts_options["mts_single_headline_meta_info"]['comment']) ) { ?>
 					                                <span class="thecomment"><i class="fa fa-comments"></i> <a href="<?php comments_link(); ?>" itemprop="interactionCount"><?php echo comments_number();?></a></span>
